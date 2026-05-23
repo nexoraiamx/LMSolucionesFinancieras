@@ -1355,6 +1355,19 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.07); padd
             </div>
           </div>
           
+          <!-- Slide 7: Otros -->
+          <div class="cob-carousel-slide">
+            <div class="cob-carousel-image-wrapper">
+              <img src="img_otros.png" alt="Otros Convenios" class="cob-carousel-img">
+            </div>
+            <div class="cob-carousel-content">
+              <div class="chip chip-dark section-eyebrow">Otros Convenios</div>
+              <h3 class="cob-carousel-title">Entre otros...</h3>
+              <p class="cob-carousel-desc">¿No ves tu convenio o dependencia? No te preocupes. Contamos con una amplia cobertura y múltiples convenios adicionales activos. ¡Contáctanos y lo validamos!</p>
+              <a href="#contacto" onclick="selectCreditType('Otros convenios / Entre otros')" class="btn-black carousel-btn" style="border-color: var(--green); color: white;">💬 Solicitar ahora</a>
+            </div>
+          </div>
+          
         </div>
       </div>
       
@@ -1530,6 +1543,7 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.07); padd
               <option>Crédito sector salud</option>
               <option>Crédito policías / seguridad pública</option>
               <option>Crédito trabajadores activos</option>
+              <option>Otros convenios / Entre otros</option>
             </select>
           </div>
           <div class="fgroup"><label>Monto aproximado *</label>
@@ -1701,6 +1715,10 @@ function toggleNav() {
 let currentSlide = 0;
 const track = document.getElementById('carouselTrack');
 const slides = Array.from(track.children);
+track.style.width = `${slides.length * 100}%`;
+slides.forEach(slide => {
+  slide.style.width = `${100 / slides.length}%`;
+});
 const prevBtn = document.querySelector('.carousel-nav-prev');
 const nextBtn = document.querySelector('.carousel-nav-next');
 const indicatorsContainer = document.getElementById('carouselIndicators');
@@ -1798,6 +1816,8 @@ function selectCreditType(typeVal) {
       depInput.value = 'Sector Salud';
     } else if (typeVal.toLowerCase().includes('policías')) {
       depInput.value = 'Seguridad Pública';
+    } else {
+      depInput.value = '';
     }
   }
   
@@ -1815,6 +1835,10 @@ updateCarousel();
 let currentCobSlide = 0;
 const cobTrack = document.getElementById('cobTrack');
 const cobSlides = Array.from(cobTrack.children);
+cobTrack.style.width = `${cobSlides.length * 100}%`;
+cobSlides.forEach(slide => {
+  slide.style.width = `${100 / cobSlides.length}%`;
+});
 const cobIndicatorsContainer = document.getElementById('cobIndicators');
 
 // Create indicators dynamically
