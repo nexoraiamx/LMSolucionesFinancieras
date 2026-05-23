@@ -474,21 +474,61 @@ nav.stuck {
   transition: all .25s;
 }
 .nav-btn:hover { background: var(--green); color: var(--white); transform: translateY(-1px); }
-.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
-.burger span { width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: .3s; }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; position: relative; z-index: 1001; }
+.burger span { width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1); transform-origin: center; }
+.burger.open span:nth-child(1) {
+  transform: translateY(7px) rotate(45deg);
+}
+.burger.open span:nth-child(2) {
+  opacity: 0;
+  transform: scaleX(0);
+}
+.burger.open span:nth-child(3) {
+  transform: translateY(-7px) rotate(-45deg);
+}
 .mob-menu {
-  display: none; flex-direction: column;
+  display: flex; flex-direction: column;
   background: var(--white); border-top: 1px solid var(--gray-200);
-  padding: 8px 0 16px;
+  padding: 0;
+  max-height: 0;
+  overflow: hidden;
+  opacity: 0;
+  transition: max-height 0.4s cubic-bezier(0.16, 1, 0.3, 1), opacity 0.3s ease, padding 0.3s ease;
+}
+.mob-menu.open {
+  max-height: 500px;
+  opacity: 1;
+  padding: 8px 0 20px;
 }
 .mob-menu a {
   display: block; padding: 13px 24px; color: var(--gray-800);
   text-decoration: none; font-size: 15px; font-weight: 500;
   border-bottom: 1px solid var(--gray-100);
+  transition: all 0.2s ease;
 }
-.mob-wa {
+.mob-menu a:hover {
+  background: var(--gray-50);
+  color: var(--green-dark);
+  padding-left: 28px;
+}
+.mob-menu a.mob-wa {
   margin: 12px 24px 0; background: var(--green); color: white;
   border-radius: 12px; text-align: center; font-weight: 700;
+  border-bottom: none;
+  padding: 14px 24px;
+  box-shadow: 0 4px 12px rgba(34,197,94,0.25);
+}
+.mob-menu a.mob-wa:hover {
+  background: var(--green-dark);
+  color: white;
+  padding-left: 24px;
+  transform: translateY(-1px);
+  box-shadow: 0 6px 16px rgba(34,197,94,0.35);
+}
+nav.menu-open {
+  background: var(--white) !important;
+  border-bottom: 1px solid var(--gray-200);
+  box-shadow: 0 4px 20px rgba(0,0,0,0.06);
 }
 
 /* ─ HERO ─ */
@@ -951,7 +991,6 @@ footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.07); padd
   .nav-links { display: none; }
   .nav-btn { display: none; }
   .burger { display: flex; }
-  .mob-menu { display: flex; }
   .stats-row { grid-template-columns: repeat(2, 1fr); }
   .s-block + .s-block { border-left: none; }
   .s-block:nth-child(3), .s-block:nth-child(4) { border-top: 1px solid var(--gray-200); padding-top: 20px; margin-top: 20px; }
@@ -1649,7 +1688,13 @@ window.addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 
 let open = false;
 function toggleNav() {
   open = !open;
-  document.getElementById('mobMenu').style.display = open ? 'flex' : 'none';
+  const mobMenu = document.getElementById('mobMenu');
+  const burger = document.getElementById('burger');
+  const navElement = document.getElementById('nav');
+  
+  mobMenu.classList.toggle('open', open);
+  burger.classList.toggle('open', open);
+  navElement.classList.toggle('menu-open', open);
 }
 
 // ─ GRAND CAROUSEL LOGIC ─
