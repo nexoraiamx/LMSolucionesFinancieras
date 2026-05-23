@@ -1,0 +1,1905 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>LM Soluciones Financieras | Créditos vía Nómina</title>
+<meta name="description" content="Créditos vía nómina para pensionados IMSS, ISSSTE, trabajadores de gobierno, SEP, sector salud. Trámite 100% digital, sin aval, depósito rápido. CDMX y Estado de México.">
+<meta name="keywords" content="créditos vía nómina, créditos pensionados, créditos ISSSTE, créditos IMSS, préstamos nómina, créditos gobierno, créditos SEP, créditos CDMX, Estado de México">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link href="https://fonts.googleapis.com/css2?family=Sora:wght@300;400;500;600;700;800&family=DM+Sans:wght@300;400;500;600;700&display=swap" rel="stylesheet">
+<style>
+:root {
+  --green: #22C55E;
+  --green-dark: #16A34A;
+  --green-light: #DCFCE7;
+  --green-mid: #86EFAC;
+  --black: #0A0A0A;
+  --gray-900: #111111;
+  --gray-800: #1C1C1C;
+  --gray-600: #4B5563;
+  --gray-400: #9CA3AF;
+  --gray-200: #E5E7EB;
+  --gray-100: #F4F4F5;
+  --gray-50: #FAFAFA;
+  --white: #FFFFFF;
+  --radius-sm: 8px;
+  --radius-md: 16px;
+  --radius-lg: 24px;
+  --radius-xl: 32px;
+  --radius: var(--radius-md);
+  --radius-lg-old: var(--radius-lg);
+  --radius-xl-old: var(--radius-xl);
+}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+html { scroll-behavior: smooth; }
+body {
+  font-family: 'DM Sans', sans-serif;
+  background: var(--white);
+  color: var(--black);
+  overflow-x: hidden;
+  font-size: 16px;
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+}
+::-webkit-scrollbar { width: 5px; }
+::-webkit-scrollbar-track { background: var(--gray-100); }
+::-webkit-scrollbar-thumb { background: var(--green); border-radius: 3px; }
+
+/* ─ UTILS ─ */
+.container { max-width: 1160px; margin: 0 auto; padding: 0 28px; }
+.section { padding: 96px 0; }
+.section-dark { background: var(--gray-900); color: var(--white); }
+.section-light { background: var(--gray-50); }
+.chip {
+  display: inline-flex; align-items: center; gap: 6px;
+  background: var(--green-light); color: var(--green-dark);
+  padding: 6px 14px; border-radius: 100px;
+  font-size: 12px; font-weight: 700; letter-spacing: 0.6px; text-transform: uppercase;
+  font-family: 'Sora', sans-serif;
+}
+.chip-dark {
+  background: rgba(34,197,94,0.15); color: var(--green);
+}
+.section-eyebrow { margin-bottom: 12px; }
+.section-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(30px, 4.5vw, 48px); font-weight: 800;
+  line-height: 1.1; letter-spacing: -1px;
+}
+.section-title-white { color: var(--white); }
+.section-sub { font-size: 17px; color: var(--gray-600); max-width: 520px; margin-top: 14px; line-height: 1.7; }
+.section-sub-white { color: rgba(255,255,255,0.6); }
+.green { color: var(--green); }
+.underline-green {
+  text-decoration: underline; text-decoration-color: var(--green);
+  text-underline-offset: 6px; text-decoration-thickness: 3px;
+}
+
+/* ─ ANIMATIONS ─ */
+@keyframes fadeUp {
+  from { opacity: 0; transform: translateY(28px); }
+  to   { opacity: 1; transform: translateY(0); }
+}
+@keyframes fadeIn {
+  from { opacity: 0; } to { opacity: 1; }
+}
+@keyframes floatY {
+  0%,100% { transform: translateY(0); }
+  50%      { transform: translateY(-10px); }
+}
+@keyframes pulse-g {
+  0%,100% { box-shadow: 0 0 0 0 rgba(34,197,94,0.4); }
+  50%      { box-shadow: 0 0 0 12px rgba(34,197,94,0); }
+}
+@keyframes spin {
+  from { transform: rotate(0deg); } to { transform: rotate(360deg); }
+}
+.reveal {
+  opacity: 0; transform: translateY(32px);
+  transition: opacity .65s ease, transform .65s ease;
+}
+.reveal.on { opacity: 1; transform: none; }
+
+/* Stagger & Text Transitions */
+.reveal-text {
+  opacity: 0;
+  transform: translateY(20px);
+  transition: opacity 0.8s cubic-bezier(0.16, 1, 0.3, 1), transform 0.8s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.reveal-text.on {
+  opacity: 1;
+  transform: none;
+}
+.stagger-item {
+  opacity: 0;
+  transform: translateY(24px);
+  transition: opacity 0.7s cubic-bezier(0.16, 1, 0.3, 1), transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.stagger-item.on {
+  opacity: 1;
+  transform: none;
+}
+
+/* ─ GRAN CARRUSEL DE SOLUCIONES ─ */
+.carousel-section {
+  padding: 96px 0;
+  background: var(--gray-50);
+  overflow-x: hidden;
+  position: relative;
+}
+.carousel-wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 48px auto 0;
+}
+.carousel-track-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.06);
+}
+.carousel-track {
+  display: flex;
+  width: 500%;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.carousel-slide {
+  width: 20%;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 1.1fr 0.9fr;
+  background: var(--white);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  align-items: center;
+  gap: 48px;
+  padding: 48px;
+}
+.carousel-content .chip {
+  align-self: flex-start;
+  margin-bottom: 16px;
+}
+@media (max-width: 900px) {
+  .carousel-slide {
+    grid-template-columns: 1fr;
+    padding: 28px;
+    gap: 28px;
+  }
+}
+.carousel-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.carousel-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--black);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.carousel-desc {
+  font-size: 15px;
+  color: var(--gray-600);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.carousel-features {
+  display: flex;
+  flex-direction: column;
+  gap: 12px;
+  margin-bottom: 32px;
+}
+.carousel-feat-item {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+  font-size: 14px;
+  font-weight: 600;
+  color: var(--gray-800);
+}
+.carousel-feat-icon {
+  width: 24px;
+  height: 24px;
+  border-radius: 50%;
+  background: var(--green-light);
+  color: var(--green-dark);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-size: 12px;
+  flex-shrink: 0;
+}
+.carousel-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.06);
+}
+@media (max-width: 900px) {
+  .carousel-image-wrapper {
+    min-height: 240px;
+  }
+}
+.carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.carousel-slide:hover .carousel-img {
+  transform: scale(1.04);
+}
+.carousel-btn {
+  align-self: flex-start;
+}
+.carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--white);
+  border: 1.5px solid var(--gray-200);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--black);
+  font-size: 18px;
+}
+.carousel-nav-btn:hover {
+  background: var(--black);
+  color: var(--white);
+  border-color: var(--black);
+  transform: translateY(-50%) scale(1.05);
+}
+.carousel-nav-prev {
+  left: -26px;
+}
+.carousel-nav-next {
+  right: -26px;
+}
+@media (max-width: 1200px) {
+  .carousel-nav-prev { left: 12px; }
+  .carousel-nav-next { right: 12px; }
+}
+.carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+.carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: var(--gray-300);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.carousel-dot.active {
+  background: var(--green);
+  width: 24px;
+  border-radius: 100px;
+}
+
+/* ─ DARK COB CAROUSEL ─ */
+.cob-carousel-wrapper {
+  position: relative;
+  max-width: 1100px;
+  margin: 48px auto 0;
+}
+.cob-carousel-track-wrapper {
+  overflow: hidden;
+  border-radius: var(--radius-xl);
+  box-shadow: 0 24px 64px rgba(0,0,0,0.3);
+}
+.cob-carousel-track {
+  display: flex;
+  width: 600%;
+  transition: transform 0.7s cubic-bezier(0.16, 1, 0.3, 1);
+  will-change: transform;
+}
+.cob-carousel-slide {
+  width: 16.666%;
+  flex-shrink: 0;
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  background: var(--gray-800);
+  border-radius: var(--radius-xl);
+  overflow: hidden;
+  align-items: center;
+  gap: 48px;
+  padding: 48px;
+  border: 1px solid rgba(255,255,255,0.06);
+}
+@media (max-width: 900px) {
+  .cob-carousel-slide {
+    grid-template-columns: 1fr;
+    padding: 28px;
+    gap: 28px;
+  }
+}
+.cob-carousel-content {
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+}
+.cob-carousel-content .chip {
+  align-self: flex-start;
+  margin-bottom: 16px;
+}
+.cob-carousel-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(24px, 3.5vw, 36px);
+  font-weight: 800;
+  color: var(--white);
+  margin-bottom: 16px;
+  line-height: 1.15;
+}
+.cob-carousel-desc {
+  font-size: 15px;
+  color: rgba(255,255,255,0.7);
+  line-height: 1.7;
+  margin-bottom: 24px;
+}
+.cob-carousel-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 100%;
+  min-height: 380px;
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  box-shadow: 0 16px 40px rgba(0,0,0,0.2);
+}
+@media (max-width: 900px) {
+  .cob-carousel-image-wrapper {
+    min-height: 240px;
+    grid-row: 1;
+  }
+}
+.cob-carousel-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  border-radius: var(--radius-lg);
+  transition: transform 6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.cob-carousel-slide:hover .cob-carousel-img {
+  transform: scale(1.04);
+}
+.cob-carousel-nav-btn {
+  position: absolute;
+  top: 50%;
+  transform: translateY(-50%);
+  width: 52px;
+  height: 52px;
+  border-radius: 50%;
+  background: var(--gray-800);
+  border: 1.5px solid rgba(255,255,255,0.1);
+  box-shadow: 0 8px 24px rgba(0,0,0,0.3);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  z-index: 10;
+  transition: all 0.3s cubic-bezier(0.16, 1, 0.3, 1);
+  color: var(--white);
+  font-size: 18px;
+}
+.cob-carousel-nav-btn:hover {
+  background: var(--green);
+  color: var(--white);
+  border-color: var(--green);
+  transform: translateY(-50%) scale(1.05);
+}
+.cob-carousel-nav-prev {
+  left: -26px;
+}
+.cob-carousel-nav-next {
+  right: -26px;
+}
+@media (max-width: 1200px) {
+  .cob-carousel-nav-prev { left: 12px; }
+  .cob-carousel-nav-next { right: 12px; }
+}
+.cob-carousel-indicators {
+  display: flex;
+  justify-content: center;
+  gap: 8px;
+  margin-top: 28px;
+}
+.cob-carousel-dot {
+  width: 10px;
+  height: 10px;
+  border-radius: 50%;
+  background: rgba(255,255,255,0.2);
+  cursor: pointer;
+  transition: all 0.3s ease;
+}
+.cob-carousel-dot.active {
+  background: var(--green);
+  width: 24px;
+  border-radius: 100px;
+}
+
+
+/* ─ NAV ─ */
+nav {
+  position: fixed; top: 0; left: 0; right: 0; z-index: 1000;
+  padding: 18px 0; background: rgba(255,255,255,0.0);
+  transition: all .3s ease;
+}
+nav.stuck {
+  background: rgba(255,255,255,0.96);
+  backdrop-filter: blur(16px);
+  border-bottom: 1px solid var(--gray-200);
+  padding: 12px 0;
+  box-shadow: 0 2px 20px rgba(0,0,0,0.06);
+}
+.nav-inner { display: flex; align-items: center; justify-content: space-between; }
+.nav-logo { display: flex; align-items: center; gap: 10px; text-decoration: none; }
+.logo-mark {
+  width: 36px; height: 36px; border-radius: 10px;
+  background: var(--green); display: flex; align-items: center; justify-content: center;
+  font-size: 17px;
+}
+.logo-name {
+  font-family: 'Sora', sans-serif; font-weight: 800; font-size: 15px;
+  color: var(--black); line-height: 1.1;
+}
+.logo-sub { font-size: 10px; color: var(--gray-400); font-weight: 400; display: block; }
+.nav-links { display: flex; align-items: center; gap: 30px; list-style: none; }
+.nav-links a {
+  font-size: 14px; font-weight: 500; color: var(--gray-600);
+  text-decoration: none; transition: color .2s;
+}
+.nav-links a:hover { color: var(--black); }
+.nav-btn {
+  background: var(--black); color: var(--white);
+  padding: 10px 22px; border-radius: 100px;
+  font-size: 14px; font-weight: 600; text-decoration: none;
+  display: flex; align-items: center; gap: 6px;
+  transition: all .25s;
+}
+.nav-btn:hover { background: var(--green); color: var(--white); transform: translateY(-1px); }
+.burger { display: none; flex-direction: column; gap: 5px; cursor: pointer; }
+.burger span { width: 22px; height: 2px; background: var(--black); border-radius: 2px; transition: .3s; }
+.mob-menu {
+  display: none; flex-direction: column;
+  background: var(--white); border-top: 1px solid var(--gray-200);
+  padding: 8px 0 16px;
+}
+.mob-menu a {
+  display: block; padding: 13px 24px; color: var(--gray-800);
+  text-decoration: none; font-size: 15px; font-weight: 500;
+  border-bottom: 1px solid var(--gray-100);
+}
+.mob-wa {
+  margin: 12px 24px 0; background: var(--green); color: white;
+  border-radius: 12px; text-align: center; font-weight: 700;
+}
+
+/* ─ HERO ─ */
+#hero {
+  min-height: 100vh; background: var(--white);
+  display: flex; align-items: center; padding-top: 80px;
+  position: relative; overflow: hidden;
+}
+.hero-blob {
+  position: absolute; border-radius: 50%; filter: blur(80px); pointer-events: none;
+}
+.blob-1 { width: 500px; height: 500px; background: rgba(34,197,94,0.08); right: -100px; top: 5%; }
+.blob-2 { width: 300px; height: 300px; background: rgba(34,197,94,0.05); left: -50px; bottom: 10%; }
+.hero-grid-bg {
+  position: absolute; inset: 0; pointer-events: none;
+  background-image:
+    linear-gradient(var(--gray-200) 1px, transparent 1px),
+    linear-gradient(90deg, var(--gray-200) 1px, transparent 1px);
+  background-size: 48px 48px; opacity: 0.35;
+  mask-image: radial-gradient(ellipse 70% 70% at 80% 40%, black 0%, transparent 80%);
+}
+.hero-inner {
+  display: grid; grid-template-columns: 1fr 1fr;
+  gap: 64px; align-items: center;
+  padding: 60px 0 80px; position: relative; z-index: 1;
+}
+.hero-badges { display: flex; flex-wrap: wrap; gap: 8px; margin-bottom: 28px; }
+.hbadge {
+  display: inline-flex; align-items: center; gap: 5px;
+  border: 1px solid var(--gray-200); background: var(--gray-50);
+  padding: 5px 12px; border-radius: 100px; font-size: 12px; font-weight: 600; color: var(--gray-600);
+}
+.hbadge .dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); }
+.hero-title {
+  font-family: 'Sora', sans-serif;
+  font-size: clamp(36px, 5.5vw, 64px); font-weight: 800;
+  line-height: 1.05; letter-spacing: -2px; margin-bottom: 22px;
+  animation: fadeUp .7s ease both;
+}
+.hero-sub {
+  font-size: 17px; color: var(--gray-600); line-height: 1.75;
+  max-width: 460px; margin-bottom: 40px;
+  animation: fadeUp .7s ease .12s both;
+}
+.hero-ctas { display: flex; gap: 12px; flex-wrap: wrap; animation: fadeUp .7s ease .24s both; }
+.btn-black {
+  background: var(--black); color: var(--white);
+  padding: 16px 32px; border-radius: 100px; font-weight: 700;
+  font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  transition: all .25s; border: 2px solid var(--black); cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-black:hover { background: var(--green); border-color: var(--green); transform: translateY(-2px); box-shadow: 0 10px 30px rgba(34,197,94,0.3); }
+.btn-outline {
+  background: transparent; color: var(--black);
+  padding: 16px 32px; border-radius: 100px; font-weight: 600;
+  font-size: 15px; text-decoration: none; display: inline-flex; align-items: center; gap: 8px;
+  border: 2px solid var(--gray-200); transition: all .25s; cursor: pointer;
+  font-family: 'DM Sans', sans-serif;
+}
+.btn-outline:hover { border-color: var(--black); transform: translateY(-2px); }
+.hero-numbers {
+  display: flex; gap: 36px; margin-top: 52px; padding-top: 36px;
+  border-top: 1px solid var(--gray-200);
+  animation: fadeUp .7s ease .36s both;
+}
+.hn-item {}
+.hn-num {
+  font-family: 'Sora', sans-serif; font-size: 34px; font-weight: 800;
+  color: var(--black); line-height: 1;
+}
+.hn-num span { color: var(--green); }
+.hn-label { font-size: 13px; color: var(--gray-400); margin-top: 4px; }
+
+/* HERO VISUAL */
+.hero-visual { position: relative; animation: fadeIn .8s ease .2s both; }
+.mockup-card {
+  background: var(--white); border-radius: var(--radius-xl);
+  padding: 28px; box-shadow: 0 24px 80px rgba(0,0,0,0.1), 0 0 0 1px var(--gray-200);
+  animation: floatY 5s ease-in-out infinite;
+}
+.mc-header { display: flex; justify-content: space-between; align-items: center; margin-bottom: 24px; }
+.mc-logo { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px; display: flex; align-items: center; gap: 6px; }
+.mc-logo-dot { width: 8px; height: 8px; border-radius: 50%; background: var(--green); }
+.mc-status {
+  display: flex; align-items: center; gap: 5px;
+  background: var(--green-light); color: var(--green-dark);
+  padding: 4px 12px; border-radius: 100px; font-size: 11px; font-weight: 700;
+}
+.mc-status-dot { width: 5px; height: 5px; border-radius: 50%; background: var(--green); animation: pulse-g 1.5s infinite; }
+.mc-amount {
+  font-family: 'Sora', sans-serif; font-size: 48px; font-weight: 800;
+  letter-spacing: -2px; margin-bottom: 4px;
+}
+.mc-label { font-size: 13px; color: var(--gray-400); margin-bottom: 24px; }
+.mc-bar-wrap { margin-bottom: 22px; }
+.mc-bar-top { display: flex; justify-content: space-between; font-size: 12px; color: var(--gray-400); margin-bottom: 8px; }
+.mc-bar { height: 6px; background: var(--gray-100); border-radius: 3px; overflow: hidden; }
+.mc-fill { height: 100%; width: 72%; background: linear-gradient(90deg, var(--green), #86EFAC); border-radius: 3px; }
+.mc-pills { display: grid; grid-template-columns: 1fr 1fr; gap: 8px; }
+.mc-pill {
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  border-radius: 10px; padding: 10px 12px; font-size: 12px; font-weight: 600;
+  display: flex; align-items: center; gap: 6px; color: var(--gray-800);
+}
+.fl-badge {
+  position: absolute; background: var(--white);
+  border: 1px solid var(--gray-200); border-radius: 12px;
+  padding: 10px 16px; font-size: 12px; font-weight: 700;
+  box-shadow: 0 8px 24px rgba(0,0,0,0.08); white-space: nowrap;
+}
+.fl-1 { top: -14px; right: 20px; animation: floatY 4s ease-in-out infinite .5s; }
+.fl-2 { bottom: -14px; left: 10px; animation: floatY 4s ease-in-out infinite 2s; }
+.fl-green { background: var(--green); color: white; border-color: var(--green); }
+
+/* ─ TICKER ─ */
+.ticker-strip {
+  background: var(--black); padding: 18px 0; overflow: hidden;
+}
+.ticker-inner {
+  display: flex; gap: 48px; animation: ticker 18s linear infinite; white-space: nowrap;
+}
+@keyframes ticker {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+.ticker-item {
+  display: flex; align-items: center; gap: 10px;
+  font-size: 13px; font-weight: 600; color: rgba(255,255,255,0.7);
+  flex-shrink: 0;
+}
+.ticker-item .t-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--green); flex-shrink: 0; }
+
+/* ─ STATS ─ */
+.stats-bar { background: var(--gray-50); border-bottom: 1px solid var(--gray-200); padding: 40px 0; }
+.stats-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; }
+.s-block { text-align: center; padding: 0 24px; }
+.s-block + .s-block { border-left: 1px solid var(--gray-200); }
+.s-num { font-family: 'Sora', sans-serif; font-size: 38px; font-weight: 800; letter-spacing: -1px; }
+.s-num .g { color: var(--green); }
+.s-label { font-size: 13px; color: var(--gray-500); margin-top: 4px; }
+
+/* ─ SERVICES ─ */
+.services-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(250px, 1fr)); gap: 16px; margin-top: 52px; }
+.svc-card {
+  background: var(--white); border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 28px; cursor: default;
+  transition: all .3s ease; position: relative; overflow: hidden;
+}
+.svc-card::after {
+  content: ''; position: absolute; bottom: 0; left: 0; right: 0; height: 3px;
+  background: var(--green); transform: scaleX(0); transition: transform .3s ease;
+}
+.svc-card:hover::after { transform: scaleX(1); }
+.svc-card:hover { border-color: var(--green); transform: translateY(-4px); box-shadow: 0 16px 48px rgba(34,197,94,0.1); }
+.svc-icon {
+  width: 52px; height: 52px; border-radius: 14px;
+  background: var(--gray-100); display: flex; align-items: center; justify-content: center;
+  font-size: 24px; margin-bottom: 16px; transition: all .3s;
+}
+.svc-card:hover .svc-icon { background: var(--green-light); }
+.svc-card h3 { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.svc-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+.svc-arrow { color: var(--gray-300); font-size: 18px; float: right; transition: all .3s; }
+.svc-card:hover .svc-arrow { color: var(--green); transform: translate(3px, -3px); }
+
+/* ─ WHO ─ */
+.who-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fill, minmax(240px, 1fr));
+  gap: 20px;
+  margin-top: 52px;
+}
+.who-card {
+  background: rgba(255,255,255,0.03);
+  border: 1px solid rgba(255,255,255,0.08);
+  border-radius: var(--radius-lg);
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  transition: all 0.35s cubic-bezier(0.16, 1, 0.3, 1);
+  height: 100%;
+}
+.who-card:hover {
+  background: rgba(255,255,255,0.06);
+  border-color: rgba(34,197,94,0.4);
+  transform: translateY(-6px);
+  box-shadow: 0 16px 40px rgba(34,197,94,0.1);
+}
+.who-image-wrapper {
+  position: relative;
+  width: 100%;
+  height: 150px;
+  overflow: hidden;
+  border-bottom: 1px solid rgba(255,255,255,0.05);
+}
+.who-img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 0.6s cubic-bezier(0.16, 1, 0.3, 1);
+}
+.who-card:hover .who-img {
+  transform: scale(1.06);
+}
+.who-info {
+  padding: 20px;
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  text-align: left;
+}
+.who-card h4 {
+  font-family: 'Sora', sans-serif;
+  font-size: 15px;
+  font-weight: 700;
+  color: var(--white);
+}
+.who-card p {
+  font-size: 12px;
+  color: rgba(255,255,255,0.5);
+  line-height: 1.5;
+}
+
+/* ─ ADVANTAGES ─ */
+.adv-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; margin-top: 52px; }
+.adv-card {
+  background: var(--white); border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-lg); padding: 26px; display: flex; gap: 18px;
+  align-items: flex-start; transition: all .3s;
+}
+.adv-card:hover { border-color: var(--green); box-shadow: 0 8px 32px rgba(34,197,94,0.08); }
+.adv-icon {
+  width: 48px; height: 48px; border-radius: 12px; flex-shrink: 0;
+  background: var(--green-light); display: flex; align-items: center;
+  justify-content: center; transition: all .3s;
+}
+.adv-icon svg {
+  stroke: var(--green-dark);
+  transition: all 0.3s ease;
+}
+.adv-card:hover .adv-icon { background: var(--green); }
+.adv-card:hover .adv-icon svg {
+  stroke: var(--white);
+  transform: rotate(6deg) scale(1.08);
+}
+.adv-card h3 { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 6px; }
+.adv-card p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+/* ─ PROCESS ─ */
+.steps-row { display: grid; grid-template-columns: repeat(4, 1fr); gap: 0; margin-top: 52px; position: relative; }
+.steps-row::before {
+  content: ''; position: absolute; top: 32px; left: 12.5%; right: 12.5%;
+  height: 1px; background: linear-gradient(90deg, var(--green), var(--green-mid), var(--green));
+  z-index: 0;
+}
+.step-item { text-align: center; padding: 0 20px; position: relative; z-index: 1; }
+.step-num {
+  width: 64px; height: 64px; border-radius: 50%; margin: 0 auto 20px;
+  background: var(--black); color: var(--white);
+  display: flex; align-items: center; justify-content: center;
+  font-family: 'Sora', sans-serif; font-size: 22px; font-weight: 800;
+  border: 4px solid var(--white); box-shadow: 0 0 0 2px var(--green);
+  transition: all .3s;
+}
+.step-item:hover .step-num { background: var(--green); box-shadow: 0 0 0 2px var(--green), 0 8px 24px rgba(34,197,94,0.4); }
+.step-item h4 { font-family: 'Sora', sans-serif; font-size: 15px; font-weight: 700; margin-bottom: 8px; }
+.step-item p { font-size: 13px; color: var(--gray-600); line-height: 1.6; }
+
+/* ─ FORM ─ */
+.form-wrap { display: grid; grid-template-columns: 1fr 1.1fr; gap: 64px; align-items: start; margin-top: 52px; }
+.form-left h2 { font-family: 'Sora', sans-serif; font-size: 34px; font-weight: 800; letter-spacing: -1px; margin-bottom: 14px; }
+.form-left p { font-size: 16px; color: var(--gray-600); line-height: 1.7; margin-bottom: 32px; }
+.cinfo-list { display: flex; flex-direction: column; gap: 14px; }
+.cinfo {
+  display: flex; align-items: center; gap: 14px;
+  background: var(--gray-50); border: 1px solid var(--gray-200);
+  border-radius: var(--radius); padding: 16px;
+}
+.cinfo-icon {
+  width: 42px; height: 42px; border-radius: 11px;
+  background: var(--green-light); display: flex; align-items: center; justify-content: center; font-size: 18px; flex-shrink: 0;
+}
+.cinfo strong { display: block; font-size: 14px; font-weight: 600; }
+.cinfo span { font-size: 13px; color: var(--gray-500); }
+.form-card {
+  background: var(--white); border: 1.5px solid var(--gray-200);
+  border-radius: var(--radius-xl); padding: 36px;
+  box-shadow: 0 16px 60px rgba(0,0,0,0.06);
+  position: relative; overflow: hidden;
+}
+.form-card::before {
+  content: ''; position: absolute; top: 0; left: 0; right: 0; height: 4px;
+  background: linear-gradient(90deg, var(--green), var(--green-mid));
+}
+.fgrid { display: grid; grid-template-columns: 1fr 1fr; gap: 14px; }
+.fgroup { display: flex; flex-direction: column; gap: 7px; }
+.fgroup.full { grid-column: 1/-1; }
+.fgroup label { font-size: 13px; font-weight: 600; color: var(--gray-800); }
+.fgroup input, .fgroup select {
+  background: var(--gray-50); border: 1.5px solid var(--gray-200);
+  border-radius: 11px; padding: 13px 15px; color: var(--black);
+  font-size: 14px; font-family: 'DM Sans', sans-serif; outline: none; transition: all .25s;
+  -webkit-appearance: none;
+}
+.fgroup input::placeholder { color: var(--gray-400); }
+.fgroup input:focus, .fgroup select:focus {
+  border-color: var(--green); background: white;
+  box-shadow: 0 0 0 3px rgba(34,197,94,0.12);
+}
+.fgroup select option { background: white; color: var(--black); }
+.upload-area {
+  border: 2px dashed var(--gray-200); border-radius: var(--radius);
+  padding: 22px; text-align: center; cursor: pointer;
+  transition: all .25s; background: var(--gray-50);
+}
+.upload-area:hover { border-color: var(--green); background: var(--green-light); }
+.upload-area .u-icon { font-size: 26px; margin-bottom: 8px; display: block; }
+.upload-area strong { display: block; font-size: 14px; font-weight: 600; color: var(--black); margin-bottom: 4px; }
+.upload-area p { font-size: 12px; color: var(--gray-400); }
+.doc-tags { display: flex; flex-wrap: wrap; gap: 6px; justify-content: center; margin-top: 10px; }
+.doc-tag {
+  background: var(--white); border: 1px solid var(--gray-200);
+  border-radius: 100px; padding: 3px 10px; font-size: 11px; font-weight: 500; color: var(--gray-600);
+}
+.upload-area input { display: none; }
+.btn-wa {
+  width: 100%; background: var(--green); color: var(--white);
+  border: none; border-radius: 100px; padding: 18px 24px;
+  font-size: 16px; font-weight: 700; cursor: pointer;
+  display: flex; align-items: center; justify-content: center; gap: 10px;
+  transition: all .3s; margin-top: 18px; font-family: 'DM Sans', sans-serif;
+  box-shadow: 0 8px 24px rgba(34,197,94,0.3);
+}
+.btn-wa:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 16px 40px rgba(34,197,94,0.4); }
+.form-note { font-size: 12px; color: var(--gray-400); text-align: center; margin-top: 12px; }
+#fileNames { font-size: 12px; color: var(--green-dark); margin-top: 6px; }
+
+/* ─ FAQ ─ */
+.faq-list { max-width: 720px; margin: 52px auto 0; display: flex; flex-direction: column; gap: 10px; }
+.faq-item {
+  border: 1.5px solid var(--gray-200); border-radius: var(--radius);
+  overflow: hidden; transition: all .3s;
+}
+.faq-item.open { border-color: var(--green); }
+.faq-q {
+  padding: 18px 22px; cursor: pointer; display: flex;
+  align-items: center; justify-content: space-between; gap: 16px;
+  font-weight: 600; font-size: 15px; transition: color .2s;
+}
+.faq-q:hover { color: var(--green-dark); }
+.faq-plus {
+  width: 30px; height: 30px; border-radius: 50%; flex-shrink: 0;
+  background: var(--gray-100); display: flex; align-items: center;
+  justify-content: center; font-size: 16px; transition: all .3s;
+}
+.faq-item.open .faq-plus { background: var(--green); color: white; transform: rotate(45deg); }
+.faq-ans {
+  max-height: 0; overflow: hidden; transition: max-height .35s ease, padding .3s;
+  font-size: 14px; color: var(--gray-600); line-height: 1.75; padding: 0 22px;
+}
+.faq-item.open .faq-ans { max-height: 200px; padding: 0 22px 18px; }
+
+/* ─ TESTIMONIALS ─ */
+.test-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(300px, 1fr)); gap: 16px; margin-top: 52px; }
+.test-card {
+  background: rgba(255,255,255,0.05); border: 1px solid rgba(255,255,255,0.1);
+  border-radius: var(--radius-lg); padding: 28px; transition: all .3s;
+  position: relative;
+}
+.test-card:hover { background: rgba(34,197,94,0.06); border-color: rgba(34,197,94,0.25); transform: translateY(-4px); }
+.test-stars { display: flex; gap: 3px; margin-bottom: 14px; }
+.test-stars span { color: var(--green); font-size: 15px; }
+.test-txt { font-size: 14px; color: rgba(255,255,255,0.75); line-height: 1.75; margin-bottom: 20px; font-style: italic; }
+.test-author { display: flex; align-items: center; gap: 12px; }
+.t-avatar {
+  width: 42px; height: 42px; border-radius: 50%; flex-shrink: 0;
+  background: linear-gradient(135deg, var(--green), var(--green-dark));
+  display: flex; align-items: center; justify-content: center; font-size: 18px;
+}
+.t-name { font-family: 'Sora', sans-serif; font-size: 14px; font-weight: 700; color: white; }
+.t-role { font-size: 12px; color: rgba(255,255,255,0.45); }
+.test-quote { position: absolute; top: 20px; right: 22px; font-size: 48px; color: rgba(34,197,94,0.15); font-family: Georgia, serif; line-height: 1; }
+
+/* ─ CTA BLOCK ─ */
+.cta-block {
+  background: var(--black); padding: 88px 0; text-align: center;
+}
+.cta-block h2 { font-family: 'Sora', sans-serif; font-size: clamp(28px, 4vw, 44px); font-weight: 800; color: white; margin-bottom: 14px; letter-spacing: -1px; }
+.cta-block p { color: rgba(255,255,255,0.5); font-size: 17px; margin-bottom: 36px; }
+.btn-green-lg {
+  background: var(--green); color: var(--white);
+  padding: 18px 44px; border-radius: 100px; font-weight: 700;
+  font-size: 17px; text-decoration: none; display: inline-flex; align-items: center; gap: 10px;
+  transition: all .3s; box-shadow: 0 12px 40px rgba(34,197,94,0.35);
+}
+.btn-green-lg:hover { background: var(--green-dark); transform: translateY(-2px); box-shadow: 0 20px 56px rgba(34,197,94,0.45); }
+.cta-sub { margin-top: 16px; font-size: 13px; color: rgba(255,255,255,0.3); }
+
+/* ─ FOOTER ─ */
+footer { background: #080808; border-top: 1px solid rgba(255,255,255,0.07); padding: 60px 0 0; }
+.footer-grid { display: grid; grid-template-columns: 2fr 1fr 1fr 1fr; gap: 48px; }
+.footer-brand p { font-size: 14px; color: rgba(255,255,255,0.4); line-height: 1.7; margin-top: 14px; max-width: 260px; }
+.footer-logo { display: flex; align-items: center; gap: 10px; }
+.f-logo-mark { width: 34px; height: 34px; border-radius: 8px; background: var(--green); display: flex; align-items: center; justify-content: center; font-size: 16px; }
+.f-logo-name { font-family: 'Sora', sans-serif; font-weight: 800; font-size: 14px; color: white; }
+.footer-socials { display: flex; gap: 8px; margin-top: 18px; }
+.fsoc {
+  width: 36px; height: 36px; border-radius: 9px;
+  background: rgba(255,255,255,0.06); border: 1px solid rgba(255,255,255,0.1);
+  display: flex; align-items: center; justify-content: center; font-size: 15px;
+  text-decoration: none; transition: all .25s; color: white;
+}
+.fsoc:hover { background: var(--green); border-color: var(--green); transform: translateY(-2px); }
+.foot-col h4 { font-family: 'Sora', sans-serif; font-size: 13px; font-weight: 700; color: white; margin-bottom: 16px; text-transform: uppercase; letter-spacing: .5px; }
+.foot-col ul { list-style: none; display: flex; flex-direction: column; gap: 10px; }
+.foot-col ul li a { font-size: 13px; color: rgba(255,255,255,0.45); text-decoration: none; transition: color .2s; }
+.foot-col ul li a:hover { color: var(--green); }
+.footer-bottom {
+  border-top: 1px solid rgba(255,255,255,0.07);
+  padding: 20px 0; margin-top: 48px;
+  display: flex; justify-content: space-between; align-items: center;
+  font-size: 12px; color: rgba(255,255,255,0.25);
+}
+
+/* ─ WA FLOAT ─ */
+.wa-float {
+  position: fixed; bottom: 24px; right: 24px; z-index: 9999;
+  display: flex; align-items: center; gap: 0;
+}
+.wa-tooltip {
+  background: var(--white); color: var(--black);
+  font-size: 13px; font-weight: 700; padding: 9px 18px;
+  border-radius: 100px 0 0 100px; box-shadow: 0 4px 20px rgba(0,0,0,0.12);
+  white-space: nowrap; transform-origin: right;
+  transform: scaleX(0); opacity: 0; transition: all .3s;
+  pointer-events: none;
+}
+.wa-float:hover .wa-tooltip { transform: scaleX(1); opacity: 1; }
+.wa-circle {
+  width: 58px; height: 58px; border-radius: 50%;
+  background: #25D366; display: flex; align-items: center; justify-content: center;
+  text-decoration: none; box-shadow: 0 8px 28px rgba(37,211,102,0.45);
+  animation: pulse-g 2.5s infinite; transition: transform .3s;
+}
+.wa-circle:hover { transform: scale(1.1); }
+.wa-circle svg { width: 30px; height: 30px; fill: white; }
+
+/* ─ RESPONSIVE ─ */
+@media (max-width: 1024px) {
+  .hero-inner { grid-template-columns: 1fr; gap: 40px; padding: 40px 0 60px; }
+  .hero-visual { max-width: 460px; margin: 0 auto; }
+  .hero-sub { max-width: 100%; }
+  .form-wrap { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr 1fr; }
+  .steps-row::before { display: none; }
+}
+@media (max-width: 768px) {
+  .section { padding: 64px 0; }
+  .nav-links { display: none; }
+  .nav-btn { display: none; }
+  .burger { display: flex; }
+  .mob-menu { display: flex; }
+  .stats-row { grid-template-columns: repeat(2, 1fr); }
+  .s-block + .s-block { border-left: none; }
+  .s-block:nth-child(3), .s-block:nth-child(4) { border-top: 1px solid var(--gray-200); padding-top: 20px; margin-top: 20px; }
+  .steps-row { grid-template-columns: 1fr 1fr; gap: 32px; }
+  .hero-ctas { flex-direction: column; }
+  .btn-black, .btn-outline { width: 100%; justify-content: center; }
+  .fgrid { grid-template-columns: 1fr; }
+  .footer-grid { grid-template-columns: 1fr; }
+  .footer-bottom { flex-direction: column; gap: 6px; text-align: center; }
+  .hero-numbers { gap: 18px; }
+}
+@media (max-width: 480px) {
+  .hero-title { font-size: 34px; }
+  .mc-amount { font-size: 36px; }
+  .fl-1, .fl-2 { display: none; }
+  .wa-float { bottom: 14px; right: 14px; }
+  .wa-circle { width: 52px; height: 52px; }
+}
+</style>
+</head>
+<body>
+
+<!-- NAV -->
+<nav id="nav">
+  <div class="container nav-inner">
+    <a href="#" class="nav-logo">
+      <div class="logo-mark" style="background: transparent; display: flex; align-items: center; justify-content: center;">
+        <svg width="38" height="38" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+          <rect width="24" height="24" rx="7" fill="var(--green)"/>
+          <path d="M5 8.5C5 7.67157 5.67157 7 6.5 7H17.5C18.3284 7 19 7.67157 19 8.5V15.5C19 16.3284 18.3284 17 17.5 17H6.5C5 17 5 15.5 5 15.5V8.5Z" stroke="white" stroke-width="1.8"/>
+          <path d="M5 10H19" stroke="white" stroke-width="1.8"/>
+          <rect x="7.5" y="12.5" width="3" height="2" rx="0.5" fill="white"/>
+        </svg>
+      </div>
+      <div>
+        <div class="logo-name">LM Soluciones</div>
+        <span class="logo-sub">Créditos vía Nómina</span>
+      </div>
+    </a>
+    <ul class="nav-links">
+      <li><a href="#servicios">Servicios</a></li>
+      <li><a href="#quienes">¿A quiénes?</a></li>
+      <li><a href="#ventajas">Ventajas</a></li>
+      <li><a href="#proceso">Proceso</a></li>
+      <li><a href="#faq">FAQ</a></li>
+    </ul>
+    <a href="https://wa.me/522203334574?text=Hola,%20quiero%20información%20sobre%20un%20crédito%20vía%20nómina." target="_blank" class="nav-btn">💬 WhatsApp</a>
+    <div class="burger" id="burger" onclick="toggleNav()">
+      <span></span><span></span><span></span>
+    </div>
+  </div>
+  <div class="mob-menu" id="mobMenu">
+    <a href="#servicios" onclick="toggleNav()">Servicios</a>
+    <a href="#quienes" onclick="toggleNav()">¿A quiénes ayudamos?</a>
+    <a href="#ventajas" onclick="toggleNav()">Ventajas</a>
+    <a href="#proceso" onclick="toggleNav()">¿Cómo funciona?</a>
+    <a href="#contacto" onclick="toggleNav()">Contacto</a>
+    <a href="#faq" onclick="toggleNav()">FAQ</a>
+    <a href="https://wa.me/522203334574?text=Hola,%20quiero%20información%20sobre%20un%20crédito%20vía%20nómina." target="_blank" class="mob-wa" onclick="toggleNav()">💬 Solicitar por WhatsApp</a>
+  </div>
+</nav>
+
+<!-- HERO -->
+<section id="hero">
+  <div class="hero-blob blob-1"></div>
+  <div class="hero-blob blob-2"></div>
+  <div class="hero-grid-bg"></div>
+  <div class="container">
+    <div class="hero-inner">
+      <div>
+        <div class="hero-badges">
+          <div class="hbadge"><div class="dot"></div> Sin aval</div>
+          <div class="hbadge"><div class="dot"></div> Trámite digital</div>
+          <div class="hbadge"><div class="dot"></div> Depósito rápido</div>
+          <div class="hbadge"><div class="dot"></div> Atención inmediata</div>
+        </div>
+        <h1 class="hero-title">
+          Tu crédito vía nómina<br>
+          <span class="green underline-green">fácil, rápido</span><br>
+          y seguro
+        </h1>
+        <p class="hero-sub">Apoyamos a pensionados, trabajadores activos y dependencias de gobierno con atención personalizada y trámite 100% digital.</p>
+        <div class="hero-ctas">
+          <a href="#contacto" class="btn-black">💬 Solicitar información</a>
+          <a href="https://wa.me/522203334574?text=Hola,%20quiero%20cotizar%20mi%20crédito." target="_blank" class="btn-outline">📲 Cotizar por WhatsApp</a>
+        </div>
+        <div class="hero-numbers">
+          <div class="hn-item"><div class="hn-num">+5K<span>+</span></div><div class="hn-label">Clientes atendidos</div></div>
+          <div class="hn-item"><div class="hn-num">24<span>h</span></div><div class="hn-label">Respuesta promedio</div></div>
+          <div class="hn-item"><div class="hn-num">100<span>%</span></div><div class="hn-label">Trámite digital</div></div>
+        </div>
+      </div>
+      <div class="hero-visual">
+        <div class="fl-badge fl-1 fl-green">✅ Aprobado</div>
+        <div class="mockup-card">
+          <div class="mc-header">
+            <div class="mc-logo"><div class="mc-logo-dot"></div> LM Soluciones</div>
+            <div class="mc-status"><div class="mc-status-dot"></div> En proceso</div>
+          </div>
+          <div class="mc-amount">$85,000</div>
+          <div class="mc-label">Monto aprobado — Crédito vía nómina</div>
+          <div class="mc-bar-wrap">
+            <div class="mc-bar-top"><span>Evaluación</span><span>72%</span></div>
+            <div class="mc-bar"><div class="mc-fill"></div></div>
+          </div>
+          <div class="mc-pills">
+            <div class="mc-pill">⚡ Trámite express</div>
+            <div class="mc-pill">🔒 100% seguro</div>
+            <div class="mc-pill">🚫 Sin aval</div>
+            <div class="mc-pill">📱 Vía WhatsApp</div>
+          </div>
+        </div>
+        <div class="fl-badge fl-2">💬 Respuesta en minutos</div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- TICKER -->
+<div class="ticker-strip">
+  <div class="ticker-inner" id="ticker">
+    <div class="ticker-item"><div class="t-dot"></div> Pensionados IMSS</div>
+    <div class="ticker-item"><div class="t-dot"></div> Pensionados ISSSTE</div>
+    <div class="ticker-item"><div class="t-dot"></div> Trabajadores SEP</div>
+    <div class="ticker-item"><div class="t-dot"></div> Gobierno CDMX</div>
+    <div class="ticker-item"><div class="t-dot"></div> Estado de México</div>
+    <div class="ticker-item"><div class="t-dot"></div> Sector Salud</div>
+    <div class="ticker-item"><div class="t-dot"></div> Policías y Seguridad</div>
+    <div class="ticker-item"><div class="t-dot"></div> IPN</div>
+    <div class="ticker-item"><div class="t-dot"></div> Sin aval requerido</div>
+    <div class="ticker-item"><div class="t-dot"></div> 100% digital</div>
+    <!-- duplicate for seamless loop -->
+    <div class="ticker-item"><div class="t-dot"></div> Pensionados IMSS</div>
+    <div class="ticker-item"><div class="t-dot"></div> Pensionados ISSSTE</div>
+    <div class="ticker-item"><div class="t-dot"></div> Trabajadores SEP</div>
+    <div class="ticker-item"><div class="t-dot"></div> Gobierno CDMX</div>
+    <div class="ticker-item"><div class="t-dot"></div> Estado de México</div>
+    <div class="ticker-item"><div class="t-dot"></div> Sector Salud</div>
+    <div class="ticker-item"><div class="t-dot"></div> Policías y Seguridad</div>
+    <div class="ticker-item"><div class="t-dot"></div> IPN</div>
+    <div class="ticker-item"><div class="t-dot"></div> Sin aval requerido</div>
+    <div class="ticker-item"><div class="t-dot"></div> 100% digital</div>
+  </div>
+</div>
+
+<!-- STATS -->
+<div class="stats-bar">
+  <div class="container">
+    <div class="stats-row reveal">
+      <div class="s-block"><div class="s-num">+5<span class="g">K</span></div><div class="s-label">Clientes atendidos</div></div>
+      <div class="s-block"><div class="s-num">24<span class="g">h</span></div><div class="s-label">Respuesta promedio</div></div>
+      <div class="s-block"><div class="s-num">100<span class="g">%</span></div><div class="s-label">Trámite 100% digital</div></div>
+      <div class="s-block"><div class="s-num">0<span class="g"> aval</span></div><div class="s-label">Sin aval requerido</div></div>
+    </div>
+  </div>
+</div>
+
+<!-- SERVICES CAROUSEL -->
+<section class="section section-light" id="servicios">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <div class="chip section-eyebrow">Soluciones a tu medida</div>
+      <h2 class="section-title">Créditos <span class="green">especializados</span> para ti</h2>
+      <p class="section-sub" style="margin: 14px auto 0;">Sustituimos el papeleo por un proceso digital rápido, diseñado para tu sector laboral.</p>
+    </div>
+    
+    <div class="carousel-wrapper reveal">
+      <div class="carousel-track-wrapper">
+        <div class="carousel-track" id="carouselTrack">
+          
+          <!-- Slide 1: Pensionados -->
+          <div class="carousel-slide">
+            <div class="carousel-content">
+              <div class="chip section-eyebrow">Pensionados IMSS / ISSSTE</div>
+              <h3 class="carousel-title">Préstamos para Pensionados y Jubilados</h3>
+              <p class="carousel-desc">Obtén la liquidez que necesitas con descuento automático directo en tu cuenta de pensión. Sin trámites complicados ni filas largas.</p>
+              <div class="carousel-features">
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Sin aval ni garantías adicionales</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Depósito rápido en tu cuenta habitual</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Plazos cómodos y tasa preferencial</div>
+              </div>
+              <a href="#contacto" onclick="selectCreditType('Crédito pensionado IMSS')" class="btn-black carousel-btn">💬 Solicitar ahora</a>
+            </div>
+            <div class="carousel-image-wrapper">
+              <img src="img_pensionados.png" alt="Pensionados y Jubilados" class="carousel-img">
+            </div>
+          </div>
+          
+          <!-- Slide 2: Maestros -->
+          <div class="carousel-slide">
+            <div class="carousel-content">
+              <div class="chip section-eyebrow">Personal SEP / Maestros</div>
+              <h3 class="carousel-title">Créditos Especiales para el Sector Educativo</h3>
+              <p class="carousel-desc">Reconocemos tu labor con condiciones de crédito exclusivas para personal docente, administrativo y de apoyo del sistema educativo.</p>
+              <div class="carousel-features">
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Descuento vía nómina simplificado</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Pre-aprobación digital en minutos</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Atención personalizada de inicio a fin</div>
+              </div>
+              <a href="#contacto" onclick="selectCreditType('Crédito SEP / Maestros')" class="btn-black carousel-btn">💬 Solicitar ahora</a>
+            </div>
+            <div class="carousel-image-wrapper">
+              <img src="img_maestros.png" alt="Personal SEP y Maestros" class="carousel-img">
+            </div>
+          </div>
+          
+          <!-- Slide 3: Salud -->
+          <div class="carousel-slide">
+            <div class="carousel-content">
+              <div class="chip section-eyebrow">Sector Salud</div>
+              <h3 class="carousel-title">Financiamiento para Héroes de la Salud</h3>
+              <p class="carousel-desc">Diseñado para médicos, enfermeras y personal de apoyo del IMSS, ISSSTE e institutos públicos. Créditos rápidos para imprevistos o proyectos.</p>
+              <div class="carousel-features">
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Montos y plazos flexibles a tu medida</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Sin papeleo excesivo, trámite 100% móvil</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Sin penalización por pagos anticipados</div>
+              </div>
+              <a href="#contacto" onclick="selectCreditType('Crédito sector salud')" class="btn-black carousel-btn">💬 Solicitar ahora</a>
+            </div>
+            <div class="carousel-image-wrapper">
+              <img src="img_salud.png" alt="Sector Salud" class="carousel-img">
+            </div>
+          </div>
+          
+          <!-- Slide 4: Gobierno -->
+          <div class="carousel-slide">
+            <div class="carousel-content">
+              <div class="chip section-eyebrow">Servidores Públicos</div>
+              <h3 class="carousel-title">Soluciones para Trabajadores del Estado</h3>
+              <p class="carousel-desc">Si laboras en dependencias federales, estatales o municipales (CDMX, Edomex), accede a financiamiento ágil y seguro con tasas fijas.</p>
+              <div class="carousel-features">
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Descuento vía nómina seguro</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Financiamiento disponible hasta $150K</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Respuesta transparente en menos de 24h</div>
+              </div>
+              <a href="#contacto" onclick="selectCreditType('Crédito gobierno CDMX')" class="btn-black carousel-btn">💬 Solicitar ahora</a>
+            </div>
+            <div class="carousel-image-wrapper">
+              <img src="img_gobierno.png" alt="Servidores Públicos de Gobierno" class="carousel-img">
+            </div>
+          </div>
+          
+          <!-- Slide 5: Seguridad -->
+          <div class="carousel-slide">
+            <div class="carousel-content">
+              <div class="chip section-eyebrow">Seguridad Pública / Policías</div>
+              <h3 class="carousel-title">Préstamos para Personal de Seguridad</h3>
+              <p class="carousel-desc">Un servicio financiero honesto y transparente para los elementos de seguridad pública federal, estatal y municipal.</p>
+              <div class="carousel-features">
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Proceso confidencial e inmediato</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Sin intermediarios ni cargos sorpresa</div>
+                <div class="carousel-feat-item"><div class="carousel-feat-icon">✓</div> Asesoría directa y amigable por WhatsApp</div>
+              </div>
+              <a href="#contacto" onclick="selectCreditType('Crédito policías / seguridad pública')" class="btn-black carousel-btn">💬 Solicitar ahora</a>
+            </div>
+            <div class="carousel-image-wrapper">
+              <img src="img_seguridad.png" alt="Seguridad Pública y Policías" class="carousel-img">
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Carousel Navigation Buttons -->
+      <button class="carousel-nav-btn carousel-nav-prev" onclick="moveCarousel(-1)">‹</button>
+      <button class="carousel-nav-btn carousel-nav-next" onclick="moveCarousel(1)">›</button>
+      
+      <!-- Carousel Indicator Dots -->
+      <div class="carousel-indicators" id="carouselIndicators"></div>
+    </div>
+  </div>
+</section>
+
+<!-- WHO WE HELP (DARK COB CAROUSEL) -->
+<section class="section section-dark" id="quienes">
+  <div class="container">
+    <div style="text-align: center;" class="reveal">
+      <div class="chip chip-dark section-eyebrow">¿A quiénes ayudamos?</div>
+      <h2 class="section-title section-title-white">Cobertura <span class="green">amplia</span> y especializada</h2>
+      <p class="section-sub section-sub-white" style="margin: 14px auto 0;">Ofrecemos financiamiento a medida para trabajadores y pensionados del sector público.</p>
+    </div>
+    
+    <div class="cob-carousel-wrapper reveal">
+      <div class="cob-carousel-track-wrapper">
+        <div class="cob-carousel-track" id="cobTrack">
+          
+          <!-- Slide 1: Pensionados -->
+          <div class="cob-carousel-slide">
+            <div class="cob-carousel-image-wrapper">
+              <img src="img_pensionados.png" alt="Pensionados IMSS e ISSSTE" class="cob-carousel-img">
+            </div>
+            <div class="cob-carousel-content">
+              <div class="chip chip-dark section-eyebrow">Jubilados y Pensionados</div>
+              <h3 class="cob-carousel-title">Pensionados IMSS e ISSSTE</h3>
+              <p class="cob-carousel-desc">Atención especializada e inmediata para jubilados y pensionados de las dos instituciones de seguridad social más importantes de México. Obtén liquidez de forma 100% segura.</p>
+              <a href="#contacto" onclick="selectCreditType('Crédito pensionado IMSS')" class="btn-black carousel-btn" style="border-color: var(--green); color: white;">💬 Solicitar ahora</a>
+            </div>
+          </div>
+          
+          <!-- Slide 2: Gobierno -->
+          <div class="cob-carousel-slide">
+            <div class="cob-carousel-image-wrapper">
+              <img src="img_gobierno.png" alt="Servidores de Gobierno" class="cob-carousel-img">
+            </div>
+            <div class="cob-carousel-content">
+              <div class="chip chip-dark section-eyebrow">Servidores Públicos</div>
+              <h3 class="cob-carousel-title">Gobierno CDMX y Edomex</h3>
+              <p class="cob-carousel-desc">Créditos de nómina para trabajadores activos de dependencias estatales, municipales y federales en el centro del país. Convenios transparentes y plazos flexibles.</p>
+              <a href="#contacto" onclick="selectCreditType('Crédito gobierno CDMX')" class="btn-black carousel-btn" style="border-color: var(--green); color: white;">💬 Solicitar ahora</a>
+            </div>
+          </div>
+          
+          <!-- Slide 3: Educación -->
+          <div class="cob-carousel-slide">
+            <div class="cob-carousel-image-wrapper">
+              <img src="img_maestros.png" alt="Sector Educación" class="cob-carousel-img">
+            </div>
+            <div class="cob-carousel-content">
+              <div class="chip chip-dark section-eyebrow">Magisterio y Docencia</div>
+              <h3 class="cob-carousel-title">Personal de SEP e IPN</h3>
+              <p class="cob-carousel-desc">Diseñado especialmente para maestros, directivos y personal de apoyo del sector educativo nacional. Apoyo inmediato con tasas preferenciales y descuento directo.</p>
+              <a href="#contacto" onclick="selectCreditType('Crédito SEP / Maestros')" class="btn-black carousel-btn" style="border-color: var(--green); color: white;">💬 Solicitar ahora</a>
+            </div>
+          </div>
+          
+          <!-- Slide 4: Salud -->
+          <div class="cob-carousel-slide">
+            <div class="cob-carousel-image-wrapper">
+              <img src="img_salud.png" alt="Sector Salud" class="cob-carousel-img">
+            </div>
+            <div class="cob-carousel-content">
+              <div class="chip chip-dark section-eyebrow">Héroes de la Salud</div>
+              <h3 class="cob-carousel-title">Sector Salud (IMSS, ISSSTE)</h3>
+              <p class="cob-carousel-desc">Financiamiento exprés con mínimos requisitos para personal médico, de enfermería y administrativo. Todo el proceso directo en tu celular sin perder tiempo en sucursales.</p>
+              <a href="#contacto" onclick="selectCreditType('Crédito sector salud')" class="btn-black carousel-btn" style="border-color: var(--green); color: white;">💬 Solicitar ahora</a>
+            </div>
+          </div>
+          
+          <!-- Slide 5: Seguridad -->
+          <div class="cob-carousel-slide">
+            <div class="cob-carousel-image-wrapper">
+              <img src="img_seguridad.png" alt="Policías y Seguridad" class="cob-carousel-img">
+            </div>
+            <div class="cob-carousel-content">
+              <div class="chip chip-dark section-eyebrow">Cuerpos de Seguridad</div>
+              <h3 class="cob-carousel-title">Policías y Seguridad Pública</h3>
+              <p class="cob-carousel-desc">Trámite ágil, honesto y de absoluta confidencialidad para miembros de seguridad pública federal, estatal y municipal. Tu dinero depositado directo en tu cuenta.</p>
+              <a href="#contacto" onclick="selectCreditType('Crédito policías / seguridad pública')" class="btn-black carousel-btn" style="border-color: var(--green); color: white;">💬 Solicitar ahora</a>
+            </div>
+          </div>
+          
+          <!-- Slide 6: Activos -->
+          <div class="cob-carousel-slide">
+            <div class="cob-carousel-image-wrapper">
+              <img src="img_activos.png" alt="Trabajadores Activos" class="cob-carousel-img">
+            </div>
+            <div class="cob-carousel-content">
+              <div class="chip chip-dark section-eyebrow">Trabajadores Activos</div>
+              <h3 class="cob-carousel-title">Nómina Domiciliada</h3>
+              <p class="cob-carousel-desc">Para trabajadores activos de diversas instituciones y dependencias que reciben sus depósitos vía nómina. Liquidez express sin aval y trámite 100% digital.</p>
+              <a href="#contacto" onclick="selectCreditType('Crédito trabajadores activos')" class="btn-black carousel-btn" style="border-color: var(--green); color: white;">💬 Solicitar ahora</a>
+            </div>
+          </div>
+          
+        </div>
+      </div>
+      
+      <!-- Carousel Navigation Buttons -->
+      <button class="cob-carousel-nav-btn cob-carousel-nav-prev" onclick="moveCobCarousel(-1)">‹</button>
+      <button class="cob-carousel-nav-btn cob-carousel-nav-next" onclick="moveCobCarousel(1)">›</button>
+      
+      <!-- Carousel Indicator Dots -->
+      <div class="cob-carousel-indicators" id="cobIndicators"></div>
+    </div>
+  </div>
+</section>
+
+<!-- ADVANTAGES -->
+<section class="section" id="ventajas">
+  <div class="container">
+    <div class="reveal">
+      <div class="chip section-eyebrow">¿Por qué elegirnos?</div>
+      <h2 class="section-title">Ventajas que marcan <span class="green">la diferencia</span></h2>
+    </div>
+    <div class="adv-grid">
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Respuesta rápida</h3>
+          <p>Evaluamos tu solicitud en minutos y te damos respuesta inmediata sin esperas.</p>
+        </div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M17 21v-2a4 4 0 0 0-4-4H5a4 4 0 0 0-4 4v2"/>
+            <circle cx="9" cy="7" r="4"/>
+            <path d="M23 21v-2a4 4 0 0 0-3-3.87"/>
+            <path d="M16 3.13a4 4 0 0 1 0 7.75"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Atención personalizada</h3>
+          <p>Un asesor dedicado te acompaña de principio a fin durante todo el proceso.</p>
+        </div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M16 4h2a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2H6a2 2 0 0 1-2-2V6a2 2 0 0 1 2-2h2"/>
+            <rect x="8" y="2" width="8" height="4" rx="1" fill="currentColor"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Trámite sencillo</h3>
+          <p>Pocos documentos, proceso simplificado. Sin burocracia innecesaria.</p>
+        </div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="12" cy="12" r="10"/>
+            <line x1="4.93" y1="4.93" x2="19.07" y2="19.07"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Sin aval requerido</h3>
+          <p>No necesitas aval ni garantía adicional. Solo tu comprobante de nómina.</p>
+        </div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M3 21h18M3 10h18M3 7l9-4 9 4M4 10v11M20 10v11M8 10v11M12 10v11M16 10v11"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Depósito rápido</h3>
+          <p>Una vez aprobado, el dinero llega directamente a tu cuenta bancaria.</p>
+        </div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <path d="M21 15a2 2 0 0 1-2 2H7l-4 4V5a2 2 0 0 1 2-2h14a2 2 0 0 1 2 2z"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Seguimiento por WhatsApp</h3>
+          <p>Toda la comunicación y seguimiento directo por WhatsApp en tiempo real.</p>
+        </div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <circle cx="11" cy="11" r="8"/>
+            <line x1="21" y1="21" x2="16.65" y2="16.65"/>
+          </svg>
+        </div>
+        <div>
+          <h3>Revisión sin compromiso</h3>
+          <p>Revisamos tu caso sin costo y sin obligarte a contratar. Tú decides.</p>
+        </div>
+      </div>
+      <div class="adv-card reveal">
+        <div class="adv-icon">
+          <svg width="22" height="22" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+            <rect x="5" y="2" width="14" height="20" rx="2" ry="2"/>
+            <line x1="12" y1="18" x2="12.01" y2="18"/>
+          </svg>
+        </div>
+        <div>
+          <h3>100% digital</h3>
+          <p>Todo desde tu celular. Sin filas, sin traslados, sin pérdida de tiempo.</p>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- PROCESS -->
+<section class="section section-light" id="proceso">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <div class="chip section-eyebrow">¿Cómo funciona?</div>
+      <h2 class="section-title">Tu crédito en <span class="green">4 pasos</span></h2>
+      <p class="section-sub" style="margin:0 auto;">Simple, rápido y transparente desde el primer contacto.</p>
+    </div>
+    <div class="steps-row">
+      <div class="step-item reveal"><div class="step-num">1</div><h4>Contáctanos</h4><p>Escríbenos por WhatsApp o llena el formulario con tus datos básicos.</p></div>
+      <div class="step-item reveal"><div class="step-num">2</div><h4>Envía documentos</h4><p>Comparte tu INE, talones de pago y estado de cuenta por WhatsApp.</p></div>
+      <div class="step-item reveal"><div class="step-num">3</div><h4>Recibe propuesta</h4><p>Te enviamos tu propuesta personalizada con monto y condiciones.</p></div>
+      <div class="step-item reveal"><div class="step-num">4</div><h4>Recibe tu dinero</h4><p>Firma el contrato y recibe el depósito en tu cuenta bancaria.</p></div>
+    </div>
+    <div style="text-align:center; margin-top:48px;" class="reveal">
+      <a href="https://wa.me/522203334574?text=Hola,%20quiero%20iniciar%20mi%20trámite%20de%20crédito%20vía%20nómina." target="_blank" class="btn-black" style="display:inline-flex;">💬 Iniciar mi trámite ahora</a>
+    </div>
+  </div>
+</section>
+
+<!-- FORM -->
+<section class="section" id="contacto">
+  <div class="container">
+    <div class="reveal">
+      <div class="chip section-eyebrow">Solicitar crédito</div>
+    </div>
+    <div class="form-wrap">
+      <div class="form-left reveal">
+        <h2>¿Listo para obtener tu <span class="green">crédito?</span></h2>
+        <p>Completa el formulario y en minutos un asesor especializado te contactará directamente por WhatsApp con tu propuesta personalizada.</p>
+        <div class="cinfo-list">
+          <div class="cinfo"><div class="cinfo-icon">💬</div><div><strong>WhatsApp directo</strong><span>220 333 4574 — Respuesta inmediata</span></div></div>
+          <div class="cinfo"><div class="cinfo-icon">⏰</div><div><strong>Horario de atención</strong><span>Lunes a Sábado 8:00 AM – 7:00 PM</span></div></div>
+          <div class="cinfo"><div class="cinfo-icon">🔒</div><div><strong>Información segura</strong><span>Tus datos son confidenciales</span></div></div>
+          <div class="cinfo"><div class="cinfo-icon">📋</div><div><strong>Documentos</strong><span>INE · Talones de pago · Estado de cuenta</span></div></div>
+        </div>
+      </div>
+      <div class="form-card reveal">
+        <div class="fgrid">
+          <div class="fgroup"><label>Nombre completo *</label><input type="text" id="f_nombre" placeholder="Tu nombre completo"></div>
+          <div class="fgroup"><label>Teléfono *</label><input type="tel" id="f_telefono" placeholder="10 dígitos"></div>
+          <div class="fgroup"><label>WhatsApp *</label><input type="tel" id="f_whatsapp" placeholder="Número de WhatsApp"></div>
+          <div class="fgroup"><label>Dependencia / Empresa *</label><input type="text" id="f_dependencia" placeholder="IMSS, ISSSTE, SEP..."></div>
+          <div class="fgroup"><label>Tipo de crédito *</label>
+            <select id="f_tipo">
+              <option value="" disabled selected>Selecciona...</option>
+              <option>Crédito vía nómina</option>
+              <option>Crédito pensionado IMSS</option>
+              <option>Crédito pensionado ISSSTE</option>
+              <option>Crédito gobierno CDMX</option>
+              <option>Crédito gobierno Estado de México</option>
+              <option>Crédito SEP / Maestros</option>
+              <option>Crédito sector salud</option>
+              <option>Crédito policías / seguridad pública</option>
+              <option>Crédito trabajadores activos</option>
+            </select>
+          </div>
+          <div class="fgroup"><label>Monto aproximado *</label>
+            <select id="f_monto">
+              <option value="" disabled selected>Selecciona...</option>
+              <option>Menos de $20,000</option>
+              <option>$20,000 – $40,000</option>
+              <option>$40,000 – $80,000</option>
+              <option>$80,000 – $150,000</option>
+              <option>Más de $150,000</option>
+            </select>
+          </div>
+          <div class="fgroup full">
+            <label>¿Tienes tus documentos a la mano? (INE vigente, talón de pago, estado de cuenta) *</label>
+            <select id="f_documentos">
+              <option value="" disabled selected>Selecciona una opción...</option>
+              <option>Sí, tengo todos mis documentos listos</option>
+              <option>Solo tengo algunos, los demás los busco hoy</option>
+              <option>No los tengo a la mano (los enviaré después por WhatsApp)</option>
+            </select>
+          </div>
+        </div>
+        <button class="btn-wa" onclick="enviarWA()">💬 Solicitar información por WhatsApp</button>
+        <p class="form-note">🔒 Tus datos son confidenciales. Respuesta en menos de 24 horas.</p>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- FAQ -->
+<section class="section section-light" id="faq">
+  <div class="container">
+    <div style="text-align:center;" class="reveal">
+      <div class="chip section-eyebrow">Preguntas frecuentes</div>
+      <h2 class="section-title">Resolvemos tus <span class="green">dudas</span></h2>
+    </div>
+    <div class="faq-list">
+      <div class="faq-item reveal"><div class="faq-q" onclick="faqToggle(this)"><span>¿Necesito aval para solicitar el crédito?</span><div class="faq-plus">+</div></div><div class="faq-ans">No, no necesitas aval. Nuestros créditos vía nómina se garantizan con tu comprobante de ingresos y el descuento directo de tu nómina o pensión, sin necesidad de presentar un aval adicional.</div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="faqToggle(this)"><span>¿Cuánto tiempo tarda el trámite?</span><div class="faq-plus">+</div></div><div class="faq-ans">El proceso es muy ágil. Revisamos tu solicitud el mismo día. El depósito puede realizarse en 24 a 72 horas hábiles dependiendo de tu dependencia y banco.</div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="faqToggle(this)"><span>¿Puedo solicitar aunque esté pensionado?</span><div class="faq-plus">+</div></div><div class="faq-ans">¡Sí! Tenemos productos especialmente diseñados para pensionados del IMSS e ISSSTE. Solo necesitas tu talón de pago de pensión y tu INE vigente para iniciar el trámite.</div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="faqToggle(this)"><span>¿Cómo sé si califico para el crédito?</span><div class="faq-plus">+</div></div><div class="faq-ans">Contáctanos por WhatsApp. Revisamos tu caso sin costo y sin compromiso, analizamos tu nómina o pensión y te decimos inmediatamente si calificas y en qué condiciones.</div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="faqToggle(this)"><span>¿El trámite es seguro y confiable?</span><div class="faq-plus">+</div></div><div class="faq-ans">Totalmente. Trabajamos con transparencia. Tu información personal y documentos son tratados con absoluta confidencialidad y seguridad en todo momento.</div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="faqToggle(this)"><span>¿Cómo recibo el dinero?</span><div class="faq-plus">+</div></div><div class="faq-ans">El dinero se deposita directamente en tu cuenta bancaria. Una vez aprobado el crédito y firmado el contrato, la transferencia se realiza en el tiempo acordado.</div></div>
+      <div class="faq-item reveal"><div class="faq-q" onclick="faqToggle(this)"><span>¿Qué documentos necesito?</span><div class="faq-plus">+</div></div><div class="faq-ans">Básicamente: INE vigente, 2 últimos talones de pago o comprobantes de pensión, y estado de cuenta bancario de los últimos 3 meses. Todo por WhatsApp en fotos o PDF.</div></div>
+    </div>
+  </div>
+</section>
+
+<!-- TESTIMONIALS -->
+<section class="section section-dark" id="testimonios">
+  <div class="container">
+    <div class="reveal">
+      <div class="chip chip-dark section-eyebrow">Testimonios</div>
+      <h2 class="section-title section-title-white">Lo que dicen nuestros <span class="green">clientes</span></h2>
+    </div>
+    <div class="test-grid">
+      <div class="test-card reveal">
+        <div class="test-quote">"</div>
+        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="test-txt">Excelente servicio, en menos de 24 horas tenía mi crédito aprobado y el dinero en mi cuenta. Sin complicaciones y atención muy profesional.</p>
+        <div class="test-author"><div class="t-avatar">👩</div><div><div class="t-name">María G.</div><div class="t-role">Pensionada IMSS · CDMX</div></div></div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-quote">"</div>
+        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="test-txt">Solo mandé mis documentos por WhatsApp y en dos días tenía mi préstamo. Nunca pensé que fuera tan sencillo. Muy recomendados.</p>
+        <div class="test-author"><div class="t-avatar">👨</div><div><div class="t-name">Roberto M.</div><div class="t-role">Maestro SEP · Estado de México</div></div></div>
+      </div>
+      <div class="test-card reveal">
+        <div class="test-quote">"</div>
+        <div class="test-stars"><span>★</span><span>★</span><span>★</span><span>★</span><span>★</span></div>
+        <p class="test-txt">Como pensionado ISSSTE estaba preocupado de no calificar, pero me ayudaron sin problemas. Trato muy amable y proceso completamente transparente.</p>
+        <div class="test-author"><div class="t-avatar">👴</div><div><div class="t-name">Arturo L.</div><div class="t-role">Pensionado ISSSTE · Edomex</div></div></div>
+      </div>
+    </div>
+  </div>
+</section>
+
+<!-- CTA FINAL -->
+<div class="cta-block">
+  <div class="container reveal">
+    <div class="chip chip-dark" style="margin: 0 auto 22px; display:inline-flex;">✅ Revisión sin costo ni compromiso</div>
+    <h2>¿Listo para solicitar<br>tu <span style="color:var(--green);">crédito?</span></h2>
+    <p>Escríbenos ahora y recibe atención personalizada de inmediato.</p>
+    <a href="https://wa.me/522203334574?text=Hola,%20quiero%20información%20sobre%20un%20crédito%20vía%20nómina.%20Por%20favor%20asesórenme." target="_blank" class="btn-green-lg">💬 Contactar por WhatsApp ahora</a>
+    <p class="cta-sub">220 333 4574 — Lunes a Sábado 8 AM – 7 PM</p>
+  </div>
+</div>
+
+<!-- FOOTER -->
+<footer>
+  <div class="container">
+    <div class="footer-grid">
+      <div class="footer-brand">
+        <div class="footer-logo">
+          <div class="f-logo-mark" style="background: transparent; display: flex; align-items: center; justify-content: center; width: 34px; height: 34px;">
+            <svg width="34" height="34" viewBox="0 0 24 24" fill="none" xmlns="http://www.w3.org/2000/svg">
+              <rect width="24" height="24" rx="7" fill="var(--green)"/>
+              <path d="M5 8.5C5 7.67157 5.67157 7 6.5 7H17.5C18.3284 7 19 7.67157 19 8.5V15.5C19 16.3284 18.3284 17 17.5 17H6.5C5 17 5 15.5 5 15.5V8.5Z" stroke="white" stroke-width="1.8"/>
+              <path d="M5 10H19" stroke="white" stroke-width="1.8"/>
+              <rect x="7.5" y="12.5" width="3" height="2" rx="0.5" fill="white"/>
+            </svg>
+          </div>
+          <div class="f-logo-name">LM Soluciones Financieras</div>
+        </div>
+        <p>Apoyamos a pensionados, trabajadores y dependencias de gobierno con soluciones financieras accesibles, rápidas y seguras.</p>
+        <div class="footer-socials">
+          <a href="https://wa.me/522203334574" target="_blank" class="fsoc">💬</a>
+          <a href="#" class="fsoc">📘</a>
+          <a href="#" class="fsoc">📸</a>
+        </div>
+      </div>
+      <div class="foot-col"><h4>Servicios</h4><ul>
+        <li><a href="#servicios">Créditos vía nómina</a></li>
+        <li><a href="#servicios">Pensionados IMSS</a></li>
+        <li><a href="#servicios">Pensionados ISSSTE</a></li>
+        <li><a href="#servicios">Créditos SEP</a></li>
+        <li><a href="#servicios">Sector salud</a></li>
+        <li><a href="#servicios">Policías y seguridad</a></li>
+      </ul></div>
+      <div class="foot-col"><h4>Empresa</h4><ul>
+        <li><a href="#ventajas">¿Por qué elegirnos?</a></li>
+        <li><a href="#proceso">¿Cómo funciona?</a></li>
+        <li><a href="#testimonios">Testimonios</a></li>
+        <li><a href="#faq">Preguntas frecuentes</a></li>
+      </ul></div>
+      <div class="foot-col"><h4>Contacto</h4><ul>
+        <li><a href="https://wa.me/522203334574" target="_blank">💬 220 333 4574</a></li>
+        <li><a href="#contacto">📋 Formulario de solicitud</a></li>
+        <li><a href="#quienes">🗺️ Zonas de servicio</a></li>
+      </ul></div>
+    </div>
+    <div class="footer-bottom">
+      <span>© 2025 LM Soluciones Financieras. Todos los derechos reservados.</span>
+      <span>Hecho con 💚 para servirte mejor</span>
+    </div>
+  </div>
+</footer>
+
+<!-- WA FLOAT -->
+<div class="wa-float">
+  <div class="wa-tooltip">Solicita tu crédito</div>
+  <a href="https://wa.me/522203334574?text=Hola,%20quiero%20información%20sobre%20un%20crédito%20vía%20nómina." target="_blank" class="wa-circle" title="WhatsApp">
+    <svg viewBox="0 0 24 24" xmlns="http://www.w3.org/2000/svg">
+      <path d="M17.472 14.382c-.297-.149-1.758-.867-2.03-.967-.273-.099-.471-.148-.67.15-.197.297-.767.966-.94 1.164-.173.199-.347.223-.644.075-.297-.15-1.255-.463-2.39-1.475-.883-.788-1.48-1.761-1.653-2.059-.173-.297-.018-.458.13-.606.134-.133.298-.347.446-.52.149-.174.198-.298.298-.497.099-.198.05-.371-.025-.52-.075-.149-.669-1.612-.916-2.207-.242-.579-.487-.5-.669-.51-.173-.008-.371-.01-.57-.01-.198 0-.52.074-.792.372-.272.297-1.04 1.016-1.04 2.479 0 1.462 1.065 2.875 1.213 3.074.149.198 2.096 3.2 5.077 4.487.709.306 1.262.489 1.694.625.712.227 1.36.195 1.871.118.571-.085 1.758-.719 2.006-1.413.248-.694.248-1.289.173-1.413-.074-.124-.272-.198-.57-.347m-5.421 7.403h-.004a9.87 9.87 0 01-5.031-1.378l-.361-.214-3.741.982.998-3.648-.235-.374a9.86 9.86 0 01-1.51-5.26c.001-5.45 4.436-9.884 9.888-9.884 2.64 0 5.122 1.03 6.988 2.898a9.825 9.825 0 012.893 6.994c-.003 5.45-4.437 9.884-9.885 9.884m8.413-18.297A11.815 11.815 0 0012.05 0C5.495 0 .16 5.335.157 11.892c0 2.096.547 4.142 1.588 5.945L.057 24l6.305-1.654a11.882 11.882 0 005.683 1.448h.005c6.554 0 11.89-5.335 11.893-11.893a11.821 11.821 0 00-3.48-8.413Z"/>
+    </svg>
+  </a>
+</div>
+
+<script>
+// Nav scroll
+const nav = document.getElementById('nav');
+window.addEventListener('scroll', () => nav.classList.toggle('stuck', scrollY > 40));
+
+// Mobile nav
+let open = false;
+function toggleNav() {
+  open = !open;
+  document.getElementById('mobMenu').style.display = open ? 'flex' : 'none';
+}
+
+// ─ GRAND CAROUSEL LOGIC ─
+let currentSlide = 0;
+const track = document.getElementById('carouselTrack');
+const slides = Array.from(track.children);
+const prevBtn = document.querySelector('.carousel-nav-prev');
+const nextBtn = document.querySelector('.carousel-nav-next');
+const indicatorsContainer = document.getElementById('carouselIndicators');
+
+// Create indicators dynamically
+slides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.classList.add('carousel-dot');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToSlide(i));
+  indicatorsContainer.appendChild(dot);
+});
+
+const dots = Array.from(indicatorsContainer.children);
+
+function updateCarousel() {
+  track.style.transform = `translateX(-${currentSlide * (100 / slides.length)}%)`;
+  
+  // Update dots
+  dots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentSlide);
+  });
+  
+  // Update slide classes
+  slides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === currentSlide);
+  });
+}
+
+function moveCarousel(direction) {
+  currentSlide = (currentSlide + direction + slides.length) % slides.length;
+  updateCarousel();
+}
+
+function goToSlide(slideIndex) {
+  currentSlide = slideIndex;
+  updateCarousel();
+}
+
+// Autoplay
+let autoplayTimer = setInterval(() => moveCarousel(1), 6000);
+
+const carouselWrapper = document.querySelector('.carousel-wrapper');
+carouselWrapper.addEventListener('mouseenter', () => clearInterval(autoplayTimer));
+carouselWrapper.addEventListener('mouseleave', () => {
+  autoplayTimer = setInterval(() => moveCarousel(1), 6000);
+});
+
+// Touch/Swipe drag support
+let startX = 0;
+let isDragging = false;
+
+track.addEventListener('touchstart', e => {
+  startX = e.touches[0].clientX;
+  isDragging = true;
+}, { passive: true });
+
+track.addEventListener('touchmove', e => {
+  if (!isDragging) return;
+  const currentX = e.touches[0].clientX;
+  const diffX = startX - currentX;
+  if (Math.abs(diffX) > 60) {
+    moveCarousel(diffX > 0 ? 1 : -1);
+    isDragging = false; // Trigger only once per swipe
+  }
+}, { passive: true });
+
+track.addEventListener('touchend', () => isDragging = false);
+
+// Pre-fill type from carousel selection
+function selectCreditType(typeVal) {
+  const typeSelect = document.getElementById('f_tipo');
+  const depInput = document.getElementById('f_dependencia');
+  
+  if (typeSelect) {
+    // Loop options to find matching or prefix
+    for (let i = 0; i < typeSelect.options.length; i++) {
+      if (typeSelect.options[i].text.toLowerCase().includes(typeVal.toLowerCase()) || 
+          typeVal.toLowerCase().includes(typeSelect.options[i].text.toLowerCase())) {
+        typeSelect.selectedIndex = i;
+        break;
+      }
+    }
+  }
+  
+  // Intelligent dependency auto-fill
+  if (depInput) {
+    if (typeVal.toLowerCase().includes('imss')) {
+      depInput.value = 'IMSS';
+    } else if (typeVal.toLowerCase().includes('issste')) {
+      depInput.value = 'ISSSTE';
+    } else if (typeVal.toLowerCase().includes('sep') || typeVal.toLowerCase().includes('maestros')) {
+      depInput.value = 'SEP (Educación)';
+    } else if (typeVal.toLowerCase().includes('salud')) {
+      depInput.value = 'Sector Salud';
+    } else if (typeVal.toLowerCase().includes('policías')) {
+      depInput.value = 'Seguridad Pública';
+    }
+  }
+  
+  // Smooth scroll to form
+  const formSection = document.getElementById('contacto');
+  if (formSection) {
+    formSection.scrollIntoView({ behavior: 'smooth' });
+  }
+}
+
+// Initialize first slide classes
+updateCarousel();
+
+// ─ DARK COVERAGE CAROUSEL LOGIC ─
+let currentCobSlide = 0;
+const cobTrack = document.getElementById('cobTrack');
+const cobSlides = Array.from(cobTrack.children);
+const cobIndicatorsContainer = document.getElementById('cobIndicators');
+
+// Create indicators dynamically
+cobSlides.forEach((_, i) => {
+  const dot = document.createElement('div');
+  dot.classList.add('cob-carousel-dot');
+  if (i === 0) dot.classList.add('active');
+  dot.addEventListener('click', () => goToCobSlide(i));
+  cobIndicatorsContainer.appendChild(dot);
+});
+
+const cobDots = Array.from(cobIndicatorsContainer.children);
+
+function updateCobCarousel() {
+  cobTrack.style.transform = `translateX(-${currentCobSlide * (100 / cobSlides.length)}%)`;
+  
+  // Update dots
+  cobDots.forEach((dot, i) => {
+    dot.classList.toggle('active', i === currentCobSlide);
+  });
+  
+  // Update slide classes
+  cobSlides.forEach((slide, i) => {
+    slide.classList.toggle('active', i === currentCobSlide);
+  });
+}
+
+function moveCobCarousel(direction) {
+  currentCobSlide = (currentCobSlide + direction + cobSlides.length) % cobSlides.length;
+  updateCobCarousel();
+}
+
+function goToCobSlide(slideIndex) {
+  currentCobSlide = slideIndex;
+  updateCobCarousel();
+}
+
+// Autoplay (slightly offset from the first one to create dynamic timing!)
+let autoplayCobTimer = setInterval(() => moveCobCarousel(1), 7500);
+
+const cobCarouselWrapper = document.querySelector('.cob-carousel-wrapper');
+cobCarouselWrapper.addEventListener('mouseenter', () => clearInterval(autoplayCobTimer));
+cobCarouselWrapper.addEventListener('mouseleave', () => {
+  autoplayCobTimer = setInterval(() => moveCobCarousel(1), 7500);
+});
+
+// Touch/Swipe drag support
+let startCobX = 0;
+let isCobDragging = false;
+
+cobTrack.addEventListener('touchstart', e => {
+  startCobX = e.touches[0].clientX;
+  isCobDragging = true;
+}, { passive: true });
+
+cobTrack.addEventListener('touchmove', e => {
+  if (!isCobDragging) return;
+  const currentX = e.touches[0].clientX;
+  const diffX = startCobX - currentX;
+  if (Math.abs(diffX) > 60) {
+    moveCobCarousel(diffX > 0 ? 1 : -1);
+    isCobDragging = false;
+  }
+}, { passive: true });
+
+cobTrack.addEventListener('touchend', () => isCobDragging = false);
+
+// Initialize second carousel slide classes
+updateCobCarousel();
+
+
+// Scroll reveal
+const io = new IntersectionObserver(entries => {
+  entries.forEach(e => {
+    if (e.isIntersecting) {
+      const delay = e.target.dataset.d || 0;
+      setTimeout(() => e.target.classList.add('on'), delay * 90);
+    }
+  });
+}, { threshold: 0.1 });
+
+// Stagger grid children
+document.querySelectorAll('.carousel-slide, .cob-carousel-slide, .adv-grid .adv-card, .test-grid .test-card').forEach((el, i) => {
+  el.dataset.d = i % 4;
+});
+
+document.querySelectorAll('.reveal').forEach(el => io.observe(el));
+
+// FAQ
+function faqToggle(el) {
+  const item = el.closest('.faq-item');
+  const wasOpen = item.classList.contains('open');
+  document.querySelectorAll('.faq-item').forEach(i => i.classList.remove('open'));
+  if (!wasOpen) item.classList.add('open');
+}
+
+// WhatsApp form submit
+function enviarWA() {
+  const n = document.getElementById('f_nombre').value.trim();
+  const t = document.getElementById('f_telefono').value.trim();
+  const w = document.getElementById('f_whatsapp').value.trim();
+  const d = document.getElementById('f_dependencia').value.trim();
+  const tp = document.getElementById('f_tipo').value;
+  const m = document.getElementById('f_monto').value;
+  const docs = document.getElementById('f_documentos').value;
+  if (!n || !t || !w || !d || !tp || !m || !docs) { alert('Por favor completa todos los campos marcados con *'); return; }
+  const msg =
+`Hola, quiero información sobre un crédito vía nómina.
+
+Nombre: ${n}
+Teléfono: ${t}
+WhatsApp: ${w}
+Dependencia: ${d}
+Tipo de crédito: ${tp}
+Monto solicitado: ${m}
+Documentos listos: ${docs}
+
+Quiero recibir información y atención personalizada.`;
+  window.open('https://wa.me/522203334574?text=' + encodeURIComponent(msg), '_blank');
+}
+
+// Smooth scroll
+document.querySelectorAll('a[href^="#"]').forEach(a => {
+  a.addEventListener('click', e => {
+    const id = a.getAttribute('href');
+    if (id === '#') return;
+    const el = document.querySelector(id);
+    if (el) { e.preventDefault(); el.scrollIntoView({ behavior: 'smooth' }); }
+  });
+});
+</script>
+</body>
+</html>
